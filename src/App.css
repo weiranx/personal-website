@@ -1,0 +1,95 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    font-family: "Arvo";
+}
+#root {
+    height: 100%;
+}
+.App {
+    height: 100%;
+}
+
+.Nav {
+    font-family: "Helvetica";
+    background: #DDDDDD;
+    color: #111;
+}
+
+.Main {
+
+}
+
+ul {
+    column-count: 2;
+}
+
+.main-header {
+    position: fixed;
+    top: 20%;
+    left: 20px;
+    font-size: 3.8em;
+    font-weight: 200;
+}
+
+.nav-list {
+    list-style: none;
+    position: fixed;
+    top: 40%;
+    column-count: 1;
+}
+
+.nav-list li {
+    font-weight: lighter;
+    font-size: 2em;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+.resume-sec {
+    font-size: 0.9em;
+}
+
+.resume-sub-sec-text {
+    text-decoration: ;
+}
+
+.resume-sec h6 {
+    text-decoration: underline;
+    font-family: "Lato";
+}
+
+.print-text {
+
+}
+.print-text:hover {
+    border: 1px black solid;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    .nav-list {
+        display: none;
+    }
+    .main-header {
+        position: relative;
+        top: 50px;
+    }
+}
+
+@media print {
+    body {
+        font-family: "Helvetica";
+    }
+    .Nav {
+        display: none;
+    }
+}
