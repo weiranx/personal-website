@@ -3,7 +3,8 @@ html {
 }
 body {
     height: 100%;
-    font-family: "Arvo";
+    font-family: "Arial";
+    font-weight: 400;
 }
 #root {
     height: 100%;
@@ -16,6 +17,8 @@ body {
     font-family: "Helvetica";
     background: #DDDDDD;
     color: #111;
+    position: static;
+    height: 100%;
 }
 
 .Main {
@@ -27,23 +30,33 @@ ul {
 }
 
 .main-header {
-    position: fixed;
-    top: 20%;
-    left: 20px;
-    font-size: 3.8em;
+    position: relative;
+    margin-top: 100px;
+    left: 10%;
+    font-size: 2em;
     font-weight: 200;
+}
+.building-notice {
+    position: relative;
+    margin-top: 20px;
+    left: 10%;
+}
+.building-notice p {
+    line-height: 5px;
+    font-size: 1em;
+    font-weight: 100;
 }
 
 .nav-list {
     list-style: none;
-    position: fixed;
-    top: 40%;
+    position: relative;
+    margin-top: 30px;
     column-count: 1;
 }
 
 .nav-list li {
     font-weight: lighter;
-    font-size: 2em;
+    font-size: 1em;
     margin-top: 20px;
     text-decoration: underline;
 }
@@ -75,13 +88,21 @@ ul {
 
 
 
+
 @media screen and (max-width: 1000px) {
-    .nav-list {
-        display: none;
+    .Nav {
+        height: 300px;
     }
-    .main-header {
-        position: relative;
-        top: 50px;
+    .nav-list li {
+        margin-left: 20px;
+        display: inline;
+    }
+    /*.main-header {*/
+        /*position: relative;*/
+        /*top: 50px;*/
+    /*}*/
+    ul {
+        column-count: 1;
     }
 }
 
