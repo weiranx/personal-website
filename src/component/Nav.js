@@ -12,6 +12,7 @@ class Nav extends Component {
                             <li>home</li>
                             <li>about</li>
                             <li>contact</li>
+                            <li>Resume</li>
                         </ul>
                         <div className="building-notice container">
                             <p>Still building this site...</p>

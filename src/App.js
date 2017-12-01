@@ -11,6 +11,7 @@ class App extends Component {
       <div className="App row">
           <Nav />
           <Main />
+
       </div>
     );
   }

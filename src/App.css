@@ -1,9 +1,10 @@
 html {
     height: 100%;
+    weight: 100%;
 }
 body {
     height: 100%;
-    font-family: "Arial";
+    font-family: "Roboto";
     font-weight: 400;
 }
 #root {
@@ -14,15 +15,20 @@ body {
 }
 
 .Nav {
-    font-family: "Helvetica";
-    background: #DDDDDD;
+    font-family: "Roboto";
+    background: linear-gradient(to bottom, #d6d6d6, #e8e8e8);
     color: #111;
-    position: static;
+    position: fixed;
     height: 100%;
+    width: 30%;
 }
 
 .Main {
-
+    margin-top: 30px;
+    position: relative;
+    height: 100%;
+    left: 30%;
+    width: 70%;
 }
 
 ul {
@@ -34,12 +40,13 @@ ul {
     margin-top: 100px;
     left: 10%;
     font-size: 2em;
-    font-weight: 200;
+    font-weight: 500;
 }
 .building-notice {
     position: relative;
     margin-top: 20px;
     left: 10%;
+    display: none;
 }
 .building-notice p {
     line-height: 5px;
@@ -59,6 +66,9 @@ ul {
     font-size: 1em;
     margin-top: 20px;
     text-decoration: underline;
+}
+.nav-list li:hover {
+    text-decoration: none;
 }
 
 .bold {
@@ -86,12 +96,96 @@ ul {
     border: 1px black solid;
 }
 
+.img-box {
+    margin:0;
+    display: inline;
+    border: 1px black solid;
+    weight: 300px;
+    height: 500px;
+}
 
+.is-img {
+    margin: 0;
+    width: 300px;
+    height: 300px;
+}
+
+.img-box:hover {
+    opacity: 0.5;
+}
+
+form label {
+    display: block;
+}
+.instagram-username-search {
+    width: 300px;
+    display: inline;
+}
+
+.spinner {
+
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner > div {
+    background-color: #333;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
 
 
 @media screen and (max-width: 1000px) {
     .Nav {
-        height: 300px;
+        width: 100%;
+        height: 200px;
+        position: inherit;
+    }
+    .Main {
+        margin-left: 20px;
+        margin-top: 10px;
+        left: auto;
     }
     .nav-list li {
         margin-left: 20px;

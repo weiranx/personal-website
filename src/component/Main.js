@@ -1,60 +1,81 @@
 import React, {Component} from 'react';
+var axios = require('axios');
 
 class Main extends Component {
     constructor(props) {
         super();
         this.state = {
-            count: 0
-        }
+            title: "",
+            instagramUsername: "weiranxiong",
+            imgUrls: [],
+            isLoading: false,
+            currentlyShowing: "",
+            imgMsg: []
+        };
+
     }
     componentDidMount() {
-        this.state = {
-            count: 0
-        };
+        this.getImages()
+    }
+    getImages() {
+        const imgUrlsArr = [], imgMsgArr = [];
+        axios.get('https://www.instagram.com/'+this.state.instagramUsername+'/?__a=1')
+            .then((res) => {
+                const media = res.data.user.media.nodes;
+                for (let i = 0; i < media.length; i++) {
+                    imgUrlsArr.push(media[i]['display_src'])
+                    imgMsgArr.push(media[i]['caption'])
+                    this.setState({
+                        imgUrls: imgUrlsArr,
+                        imgMsg: imgMsgArr,
+                        isLoading: false,
+                        currentlyShowing: "Showing result for: "+res.data.user.username
+                    });
+                }
+            }).catch((err) => {
+            console.log("ERROR");
+            this.setState({
+                isLoading: false,
+                currentlyShowing: "Error loading "+this.state.instagramUsername
+            })
+        });
+    }
+    handleOnValueChange = (evt) => {
+        this.setState({
+            instagramUsername: evt.target.value,
+            isLoading: true
+        })
+        this.getImages()
     }
     render = () => {
+        console.log(this.state.imgUrls);
         return (
-            <div className="Main col-lg-7">
-                <div className="container" style={{"marginTop": 50}}>
+            <div className="Main">
+                <div className="container">
+                    <h4>This is just a test tool for pulling data from Instagram</h4>
+                    <form>
+                        <div className="form-group">
+                            <label for="instagram">Instagram Username</label>
+                            <input onChange={this.handleOnValueChange} type="text" placeholder="username" defaultValue={this.state.instagramUsername} className="form-control instagram-username-search"/>
+                            {this.state.isLoading ? <div class="spinner ">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div> : null}
+                        </div>
 
-                    <button className="print-text">Print</button>
-
-                    <div className="resume-sec">
-                        <h6>Education</h6>
-                        <p>Currently freshman at <span className="bold">University of California, San Diego</span>, majoring in <span className="bold">Mathmatics - Computer Science</span></p>
-                        <p className="resume-sub-sec-text">Courses Currently Taking Relating the Field</p>
-                        <ul>
-                            <li>CSE 11 - Java Programming</li>
-                            <li>MATH 20C - Vector Calculus</li>
-                        </ul>
-                        <p className="resume-sub-sec-text">Courses Planning to Take This Year</p>
-                        <ul>
-                            <li>CSE 12 -Basic Data Structure and Object-Oriented Design</li>
-                            <li>CSE 15L - Software Tools & Techniques Lab</li>
-                            <li>CSE 30 – Computer Organization & Systems Analysis</li>
-                        </ul>
-                        <p className="resume-sub-sec-text">Self-Studying Topics</p>
-                        <ul>
-                            <li>Python Programming</li>
-                            <li>Node.js</li>
-                            <li>Design</li>
-                            <li>Machine Learning</li>
-                        </ul>
-                    </div>
-
-                    <div className="resume-sec">
-                        <h6>Skills</h6>
-                        <ul>
-                            <li>iOS Developer</li>
-                            <li>Web Developer</li>
-                            <li>Back-end Developer</li>
-                            <li>UI/UX Designer</li>
-                        </ul>
-                    </div>
-
-                    <div className="resume-sec">
-                        <h4>Experiences and Projects</h4>
-                    </div>
+                    </form>
+                    <p>{this.state.currentlyShowing}</p>
+                    {this.state.imgUrls.map((imgUrl, index) => {
+                        return (
+                            <figure className="figure">
+                               <img src={imgUrl} className="figure-img img-fluid rounded"/>
+                                <figcaption class="figure-caption">{this.state.imgMsg[index]}</figcaption>
+                            </figure>
+                        );
+                    })}
                 </div>
             </div>
         );
